@@ -5,7 +5,7 @@ import 'rxjs/add/observable/throw'
 export class ErrorHandler {
     static handleError(error:Response|any){
         let errorMessage:string
-        console.log(errorMessage);
+        
 
         if(error instanceof Response){
             errorMessage = `Erro ${error.status} ao acessar a URL ${error.url} - ${error.statusText}`
@@ -14,6 +14,8 @@ export class ErrorHandler {
             errorMessage = error.toString();
         }
 
+        console.log(errorMessage);
+        
         return Observable.throw(errorMessage)
     }
 }
