@@ -1,3 +1,6 @@
+import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
+import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
+import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -12,7 +15,7 @@ import { ROUTES } from './app.routs';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
 import { RestaurantsService } from './restaurants/restaurants.service';
-
+import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,11 @@ import { RestaurantsService } from './restaurants/restaurants.service';
     HomeComponent,
     AboutComponent,
     RestaurantsComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RestaurantDetailComponent,
+    MenuComponent,
+    ShoppingCartComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,7 @@ import { RestaurantsService } from './restaurants/restaurants.service';
     RouterModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
-  bootstrap: [AppComponent, RestaurantsService]
+  providers: [RestaurantsService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,6 +15,6 @@ restaurants:Restaurant[]
    }
 
   ngOnInit() {
-    this.restaurants = this.restaurantsService.restaurants();
+    this.restaurantsService.restaurants().subscribe(c=> this.restaurants = c);
   }
 }
