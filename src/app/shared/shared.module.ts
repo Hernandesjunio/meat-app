@@ -1,13 +1,24 @@
+import { RestaurantsService } from './../restaurants/restaurants.service';
+import { ShoppingCartService } from './../restaurant-detail/shopping-cart/shopping-cart.services';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RatingComponent } from './rating/rating.component';
 import { RadioComponent } from './radio/radio.component';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OrderService } from 'app/order/order.service';
 
 @NgModule({
   imports: [CommonModule,FormsModule,ReactiveFormsModule],
   declarations: [RadioComponent,RatingComponent,InputComponent],
   exports:[InputComponent,RadioComponent,RatingComponent,CommonModule,FormsModule,ReactiveFormsModule]
 })
-export class SharedModule { }
+export class SharedModule { 
+
+  static forRoot():ModuleWithProviders{
+    return {
+      ngModule:SharedModule,
+      providers:[ShoppingCartService, OrderService, RestaurantsService]
+    }
+  }
+}

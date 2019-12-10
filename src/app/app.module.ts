@@ -1,6 +1,5 @@
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { OrderService } from './order/order.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.services';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
@@ -14,7 +13,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component'
 import { ROUTES } from './app.routes';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
@@ -31,7 +29,6 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AboutComponent,
     RestaurantsComponent,
     RestaurantComponent,
     RestaurantDetailComponent,
@@ -39,17 +36,17 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderComponent,
-    OrderItemsComponent, DeliveryCostsComponent, OrderSummaryComponent
+    OrderSummaryComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule,
     SharedModule,
+    CoreModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [RestaurantsService, ShoppingCartService, OrderService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
