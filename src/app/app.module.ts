@@ -23,6 +23,9 @@ import { OrderComponent } from './order/order.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { NotificationService } from './shared/messages/notification.services';
+
 
 @NgModule({
   declarations: [
@@ -36,17 +39,18 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent    
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule,
-    SharedModule,
+    BrowserAnimationsModule,
+    SharedModule.forRoot(),
     CoreModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [ { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
