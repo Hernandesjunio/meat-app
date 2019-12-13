@@ -24,7 +24,7 @@ import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import { NotificationService } from './shared/messages/notification.services';
+import { NotificationService } from './shared/messages/notification.service';
 
 
 @NgModule({

@@ -8,7 +8,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderService } from 'app/order/order.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
-import { NotificationService } from './messages/notification.services';
+import { NotificationService } from './messages/notification.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
