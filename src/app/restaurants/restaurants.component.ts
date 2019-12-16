@@ -1,20 +1,64 @@
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { state, trigger, style, transition, animate } from '@angular/animations';
 import { Restaurant } from './restaurant/restaurants.model';
 import { Component, OnInit } from '@angular/core';
 import { RestaurantsService } from './restaurants.service';
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/distinctUntilChanged'
+import 'rxjs/add/operator/do'
 
 @Component({
   selector: 'mt-restaurants',
-  templateUrl: './restaurants.component.html'
+  templateUrl: './restaurants.component.html',
+  animations: [
+    trigger('toggleSearch', [
+      state('hidden',
+        style({
+          opacity: 0,
+          "max-height": "0px"
+        })
+      ),
+      state('visible',
+        style({
+          opacity: 1,
+          "max-height": "70px",
+          "margin-top": "20px"
+        })
+      ),
+      transition('* => *', animate('250ms 0s ease-in-out'))
+    ])
+  ]
 })
 export class RestaurantsComponent implements OnInit {
 
-restaurants:Restaurant[]
+  restaurants: Restaurant[]
+  searchBarState: string = 'hidden'
+  searchForm: FormGroup
+  searchControl: FormControl
+  constructor(private restaurantsService: RestaurantsService,
+    private fb: FormBuilder) {
 
-  constructor(private restaurantsService: RestaurantsService) {
-    
-   }
+  }
 
   ngOnInit() {
-    this.restaurantsService.restaurants().subscribe(c=> this.restaurants = c);
+
+    this.searchControl = this.fb.control('')
+    this.searchForm = this.fb.group({
+      searchControl: this.searchControl
+    })
+
+    this.searchControl.valueChanges        
+    .debounceTime(500)
+    .distinctUntilChanged()
+    .switchMap(searchTerm=> this.restaurantsService.restaurants(searchTerm))
+    .subscribe(c=> this.restaurants = c)
+
+    this.restaurantsService.restaurants().subscribe(c => this.restaurants = c);
+  }
+
+  toggleSearch() {
+    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
+    console.log(this.searchBarState)
   }
 }

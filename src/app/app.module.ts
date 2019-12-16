@@ -6,7 +6,7 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 
@@ -16,15 +16,11 @@ import { HomeComponent } from './home/home.component';
 import { ROUTES } from './app.routes';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import { RestaurantsService } from './restaurants/restaurants.service';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import { OrderComponent } from './order/order.component';
-import { OrderItemsComponent } from './order/order-items/order-items.component';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import { NotificationService } from './shared/messages/notification.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -39,11 +35,12 @@ import { NotificationService } from './shared/messages/notification.service';
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderSummaryComponent    
+    OrderSummaryComponent,
+    NotFoundComponent    
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
