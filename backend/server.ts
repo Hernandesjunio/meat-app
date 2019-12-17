@@ -1,4 +1,5 @@
 import { handleAuthentication } from './auth';
+import {handleAuthorization} from './authz'
 import * as jsonServer from 'json-server'
 import { Express } from 'express'
 import * as fs from 'fs'
@@ -12,13 +13,14 @@ server.use(middlewares);
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
-
+    
 server.get('/',(req, res)=>{
   res.send('Hello')
 })
 
 //middlware para login
 server.post('/login', handleAuthentication)
+server.use('/orders', handleAuthorization)
 
 // Use default router
 server.use(router);

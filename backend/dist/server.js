@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var auth_1 = require("./auth");
+var authz_1 = require("./authz");
 var jsonServer = require("json-server");
 var fs = require("fs");
 var https = require("https");
@@ -17,6 +18,7 @@ server.get('/', function (req, res) {
 });
 //middlware para login
 server.post('/login', auth_1.handleAuthentication);
+server.use('/orders', authz_1.handleAuthorization);
 // Use default router
 server.use(router);
 var options = {
