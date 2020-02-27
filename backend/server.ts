@@ -18,6 +18,10 @@ server.get('/',(req, res)=>{
   res.send('Hello')
 })
 
+server.get('/hello',(req, res)=>{
+  res.send('Hello')
+})
+
 //middlware para login
 server.post('/login', handleAuthentication)
 server.use('/orders', handleAuthorization)
