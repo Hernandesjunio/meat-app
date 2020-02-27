@@ -1,8 +1,10 @@
+import { NotificationService } from './../../shared/messages/notification.service';
 import { User } from './../../../../backend/users';
 import { LoginService } from './login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LoginForm } from './user.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'mt-login',
@@ -11,7 +13,8 @@ import { LoginForm } from './user.model';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private notificationService: NotificationService) { }
 
   getLoginForm(): LoginForm {
     return this.loginForm.value
@@ -27,10 +30,11 @@ export class LoginComponent implements OnInit {
   login() {
     const login = this.getLoginForm()
 
-    this.loginService.login(login.name,login.password)
+    this.loginService.login(login.email,login.senha)
       .subscribe((user: User) => {
-        console.log(user.name + ' ' + - user.email)
-      })
+        this.notificationService.notify(`Bem vindo, ${user.name}`)
+      },
+      (response: HttpErrorResponse)=> this.notificationService.notify(response.error.message))
   }
 
 }

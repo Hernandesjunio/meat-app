@@ -5,6 +5,7 @@ var jwt = require("jsonwebtoken");
 var api_config_1 = require("./api-config");
 exports.handleAuthentication = function (req, res) {
     var user = req.body;
+    console.log('Consultando usuario ' + user.email);
     if (isValid(user)) {
         var dbUser = users_1.users[user.email];
         var token = jwt.sign({ sub: dbUser.email,

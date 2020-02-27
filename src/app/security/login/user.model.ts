@@ -5,6 +5,6 @@ export interface User{
 }
 
 export interface LoginForm{
-    name:string,
-    password:string
+    email:string,
+    senha:string
 }

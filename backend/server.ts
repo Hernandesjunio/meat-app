@@ -22,6 +22,8 @@ server.get('/hello',(req, res)=>{
   res.send('Hello')
 })
 
+console.log(handleAuthentication)
+
 //middlware para login
 server.post('/login', handleAuthentication)
 server.use('/orders', handleAuthorization)

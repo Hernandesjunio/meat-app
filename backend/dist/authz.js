@@ -21,11 +21,15 @@ exports.handleAuthorization = function (req, resp, next) {
 };
 function extractToken(req) {
     var token = undefined;
+    //console.log(req.headers.authorization.split(' ')[1])
     if (req.headers && req.headers.authorization) {
         var parts = req.headers.authorization.split(' ');
-        if (parts.length === 2 && parts[1] === "Bearer") {
+        if (parts.length === 2 && parts[0] === "Bearer") {
             token = parts[1];
         }
     }
+
+    console.log(token)
     return token;
+    
 }

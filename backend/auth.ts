@@ -6,7 +6,9 @@ import { apiConfig } from './api-config';
 
 export const handleAuthentication = (req:Request,res:Response)=>{
 const user:User = req.body
+console.log('Consultando usuario '+ user.email)
 if(isValid(user)){
+    
     const dbUser = users[user.email]
  
     const token = jwt.sign({sub:dbUser.email, 

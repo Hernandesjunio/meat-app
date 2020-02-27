@@ -16,6 +16,10 @@ server.use(jsonServer.bodyParser);
 server.get('/', function (req, res) {
     res.send('Hello');
 });
+server.get('/hello', function (req, res) {
+    res.send('Hello');
+});
+console.log(auth_1.handleAuthentication);
 //middlware para login
 server.post('/login', auth_1.handleAuthentication);
 server.use('/orders', authz_1.handleAuthorization);
