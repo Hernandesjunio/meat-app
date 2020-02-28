@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LoginForm } from './user.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'mt-login',
@@ -12,15 +13,22 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
   loginForm: FormGroup
+  navigateTo: string
+
   constructor(private loginService: LoginService,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              private activatedRoute: ActivatedRoute,
+              private router:Router) { }
 
   getLoginForm(): LoginForm {
     return this.loginForm.value
   }
 
   ngOnInit() {
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/')
+
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [Validators.required])
@@ -34,7 +42,10 @@ export class LoginComponent implements OnInit {
       .subscribe((user: User) => {
         this.notificationService.notify(`Bem vindo, ${user.name}`)
       },
-      (response: HttpErrorResponse)=> this.notificationService.notify(response.error.message))
+      (response: HttpErrorResponse)=> this.notificationService.notify(response.error.message),
+      ()=> {
+        this.router.navigate([atob(this.navigateTo)])
+        })
   }
 
 }
