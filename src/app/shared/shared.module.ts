@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
 import { OrderService } from 'app/order/order.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 import { NotificationService } from './messages/notification.service';
+import { LeaveOrderGuard } from 'app/order/leave-order.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'app/security/auth.interceptor';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -28,7 +31,9 @@ export class SharedModule {
                   OrderService, 
                   RestaurantsService, 
                   NotificationService,
-                  LoggedInGard]
+                  LoggedInGard,
+                  LeaveOrderGuard,
+                 {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}]
     }
   }
 }

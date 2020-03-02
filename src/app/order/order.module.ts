@@ -4,9 +4,11 @@ import { OrderComponent } from './order.component';
 import { NgModule } from '@angular/core';
 import { OrderItemsComponent } from './order-items/order-items.component';
 import { Routes, RouterModule } from '@angular/router';
+import { LeaveOrderGuard } from './leave-order.guard';
+
 
 const ROUTES: Routes = [
-    { path: '', component: OrderComponent }
+    { path: '', component: OrderComponent, canDeactivate:[LeaveOrderGuard] }
 ]
 
 @NgModule({

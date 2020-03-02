@@ -12,8 +12,7 @@ import { HammerGestureConfig } from '@angular/platform-browser';
 export class OrderService {
 
   constructor(private shoppingCartService: ShoppingCartService,
-              private http: HttpClient,
-              private loginService:LoginService) {
+    private http: HttpClient) {
 
   }
 
@@ -38,12 +37,8 @@ export class OrderService {
   }
 
   checkOrder(order: Order): Observable<string> {
-    var headers = new HttpHeaders()
-    if(this.loginService.isLoggetIn()){
-      headers = headers.set('Authorization',`Bearer ${this.loginService.user.accessToken}`)
-    }
 
-    return this.http.post<Order>(`${MEAT_API}/orders`, order, {headers:headers})
+    return this.http.post<Order>(`${MEAT_API}/orders`, order)
       .map((order: Order) => order.id)
   }
 
