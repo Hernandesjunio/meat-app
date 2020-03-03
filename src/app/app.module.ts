@@ -5,10 +5,13 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
 import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt,'pt')
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -23,6 +26,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
+import { AplicationErrorHandler } from './app.handle-error';
 
 
 @NgModule({
@@ -51,7 +55,8 @@ import { UserDetailComponent } from './header/user-detail/user-detail.component'
     CoreModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [ { provide: LOCALE_ID, useValue: 'pt' },
+               { provide: ErrorHandler, useClass:AplicationErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
