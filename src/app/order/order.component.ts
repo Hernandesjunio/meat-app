@@ -5,7 +5,7 @@ import { RadioOption } from 'app/shared/radio/radio-option.model';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'mt-order',
@@ -83,9 +83,9 @@ export class OrderComponent implements OnInit {
         new OrderItem(cartItem.quantity, cartItem.menuItem.id)
       )
     this.orderService.checkOrder(order)
-      .do(orderId=> {
+    .pipe(tap((orderId:string)=> {
         this.orderId = orderId
-      })
+      }))
       .subscribe((orderId: string) => {
       this.router.navigate(['/order-summary'])
       console.log('Compra concluída orderId:' + orderId)

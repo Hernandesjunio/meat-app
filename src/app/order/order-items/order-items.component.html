@@ -22,14 +22,14 @@
           {{item.quantity}}
           <a (click)="emitIncreaseQty(item)" class="btn btn-sm"><i class="fa fa-plus"></i></a>
         </td>
-        <td>{{item.menuItem.name}}</td>
+        <td>{{item.menuItem.name}}</td> 
 
         <td>{{item.menuItem.description}}</td>
-        <td class="text-right">{{item.value()}}</td>
+        <td class="text-right">{{item.value() | currency:'BRL':'symbol'}}</td>
         <td class="text-right">
           <a (click)="emitRemove(item)" class="btn btn-sm danger"><i class="fa fa-remove"></i></a>
         </td>
-      </tr>
+      </tr>  
     </tbody>
   </table>
 </div>

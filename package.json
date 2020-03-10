@@ -29,10 +29,9 @@
     "jquery": "3.1.1",
     "reflect-metadata": "0.1.10",
     "rxjs": "6.0.0",
-    "rxjs-compat": "6.0.0",
     "ts-helpers": "1.1.2",
     "web-animations-js": "2.2.5",
-    "zone.js": "0.8.26",
+    "zone.js": "0.10.2",
     "ajv": "6.0.0"
   },
   "devDependencies": {

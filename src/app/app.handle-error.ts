@@ -2,8 +2,7 @@ import { Injector/*, NgZone*/ } from '@angular/core';
 import { LoginService } from './security/login/login.service';
 import { NotificationService } from './shared/messages/notification.service';
 import { HttpErrorResponse } from '@angular/common/http'
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw'
+
 import { ErrorHandler, Inject, Injectable } from '@angular/core';
 
 @Injectable()
